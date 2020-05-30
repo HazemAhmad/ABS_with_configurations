@@ -206,15 +206,16 @@ class Simulation(object):
         :param agent: an instance of agents.Agent
         """
 #my lines
+        if agent.status == Status.Exposed: 
+            agent.infected_time += 1
+            agent.infected_status = InfectionSeverity.Exposed
+            if agent.infected_time > 5: #agent.incubation_time :
+                agent.status = Status.Infected
+                
         if agent.status == Status.Death:
             return
         if agent.status == Status.Infected :
             agent.infected_time += 1
-        if agent.status == Status.Exposed: 
-            agent.infected_time += 1
-            if agent.infected_time > agent.incubation_time :
-                agent.status = Status.Infected               
-        
             
             indice = agent.age // 10 - 1 if agent.age > 10 else 0
 
