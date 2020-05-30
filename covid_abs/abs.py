@@ -233,6 +233,12 @@ class Simulation(object):
         
 
             death_test = np.random.random()
+            
+            if agent.infected_time > 20:
+                agent.infected_time = 0
+                agent.status = Status.Recovered_Immune
+                agent.infected_status = InfectionSeverity.Asymptomatic
+                
             if age_death_probs[indice] > death_test:
                 agent.status = Status.Death
                 agent.infected_status = InfectionSeverity.Asymptomatic
@@ -241,10 +247,7 @@ class Simulation(object):
                 #agent.status = Status.Infected
                 #agent.infected_status = InfectionSeverity.Symptomatic  # my line 
 
-            if agent.infected_time > 20:
-                agent.infected_time = 0
-                agent.status = Status.Recovered_Immune
-                agent.infected_status = InfectionSeverity.Asymptomatic
+            
 
         agent.wealth -= self.minimum_expense * basic_income[agent.social_stratum]
 
