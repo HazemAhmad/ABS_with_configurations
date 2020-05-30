@@ -231,7 +231,7 @@ class Simulation(object):
                 agent.status = Status.Death
                 agent.infected_status = InfectionSeverity.Asymptomatic
                 return
-            if agent.infected_time > agent.incubation_time and agent.infected_time < 20:
+            if agent.incubation_time < agent.infected_time < 20:
                 agent.status = Status.infected
                 agent.infected_status = InfectionSeverity.Symptomatic  # my line 
 
