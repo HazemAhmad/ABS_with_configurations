@@ -74,7 +74,7 @@ class Agent(object):
         """
         if self.infected_time <= self.incubation_time and self.status == Status.Infected:
             self.status = Status.Exposed
-            return "{}".format(self.status.name)
+            return "{}({})".format(self.status.name)
         elif self.status == Status.Infected and self.infected_time > 4:
             return "{}({})".format(self.status.name, self.infected_status.name)
         else:
