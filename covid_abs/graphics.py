@@ -25,7 +25,7 @@ def color1(s):
     if s == 'Susceptible':
         return 'lightblue'
     elif s == 'Exposed':
-        return 'darkblue'
+        return 'violet'
     elif s == 'Infected':
         return 'gray'
     elif s == 'Recovered_Immune':
