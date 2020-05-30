@@ -38,6 +38,7 @@ class Simulation(object):
         '''The percent of population which the Health System can afford'''
         self.amplitudes = kwargs.get('amplitudes',
                                      {Status.Susceptible: 5,
+                                      Status.Exposed: 5,
                                       Status.Recovered_Immune: 5,
                                       Status.Infected: 5})
         '''A dictionary with the average mobility of agents inside the shared environment for each status'''
