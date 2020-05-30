@@ -24,8 +24,8 @@ class Simulation(object):
         '''The initial percent of population which starts the simulation with the status Infected'''
         self.initial_immune_perc = kwargs.get("initial_immune_perc", 0.05)
         '''The initial percent of population which starts the simulation with the status Immune'''
-        self.initial_exposed_perc = kwargs.get("initial_exposed_perc", 0.025)
-        '''The initial percent of population which starts the simulation with the status Exposed''' #my line
+        self.initial_exposed_perc = kwargs.get("initial_immune_perc", 0.025)
+        '''The initial percent of population which starts the simulation with the status Exposed'''
         self.contagion_distance = kwargs.get("contagion_distance", 1.)
         '''The minimal distance considered as contact (or exposition)'''
         self.contagion_rate = kwargs.get("contagion_rate", 0.9)
@@ -38,7 +38,6 @@ class Simulation(object):
         '''The percent of population which the Health System can afford'''
         self.amplitudes = kwargs.get('amplitudes',
                                      {Status.Susceptible: 5,
-                                      Status.Exposed: 5,
                                       Status.Recovered_Immune: 5,
                                       Status.Infected: 5})
         '''A dictionary with the average mobility of agents inside the shared environment for each status'''
@@ -159,7 +158,7 @@ class Simulation(object):
 
         if agent1.status == Status.Susceptible and agent2.status == Status.Infected:
             contagion_test = np.random.random()
-            agent1.Status = Status.Exposed
+            agent1.Status = status.Exposed
             if contagion_test <= self.contagion_rate:
                 agent1.status = Status.Infected
                 agent1.infection_status = InfectionSeverity.Asymptomatic
@@ -232,7 +231,7 @@ class Simulation(object):
                 agent.status = Status.Death
                 agent.infected_status = InfectionSeverity.Asymptomatic
                 return
-            if agent.incubation_time < agent.infected_time < 20:
+            if agent.infected_time > agent.incubation_time and agent.infected_time < 20:
                 agent.status = Status.infected
                 agent.infected_status = InfectionSeverity.Symptomatic  # my line 
 
