@@ -32,8 +32,8 @@ class Simulation(object):
         '''The probability of contagion given two agents were in contact'''
         self.initial_infected_time = kwargs.get('infected_time', 0)
         """The time (in days) after the infection""" #my line
-        self.initial_incubation_time = kwargs.get('incubation_time', 1)
-        """The time (in days) after the infection without being infectious""" #my line 
+        #self.initial_incubation_time = kwargs.get('incubation_time', 1)
+        #"""The time (in days) after the infection without being infectious""" #my line 
         self.critical_limit = kwargs.get("critical_limit", 0.6)
         '''The percent of population which the Health System can afford'''
         self.amplitudes = kwargs.get('amplitudes',
@@ -211,7 +211,7 @@ class Simulation(object):
                                                  # my line
         if agent.status == Status.Infected or agent.status == Status.Exposed :
             agent.infected_time += 1
-            if agent.infected_time >= agent.incubation_time and agent.infected_time < 20 :
+            if agent.infected_time > 5 :
                 agent.status = Status.Infected
             indice = agent.age // 10 - 1 if agent.age > 10 else 0
 
@@ -234,7 +234,7 @@ class Simulation(object):
                 agent.status = Status.Death
                 agent.infected_status = InfectionSeverity.Asymptomatic
                 return
-            if agent.infected_time > agent.incubation_time:
+            if agent.infected_time > 5:
                 agent.status = Status.Infected
                 #agent.infected_status = InfectionSeverity.Symptomatic  # my line 
 
