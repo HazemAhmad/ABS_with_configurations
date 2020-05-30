@@ -30,7 +30,7 @@ class Simulation(object):
         '''The probability of contagion given two agents were in contact'''
         self.initial_infected_time = kwargs.get('infected_time', 0)
         """The time (in days) after the infection""" #my line
-        #self.incubation_time = kwargs.get('incubation_time', 1)
+        self.incubation_time = kwargs.get('incubation_time', 1)
         """The time (in days) after the infection without being infectious""" #my line 
         self.critical_limit = kwargs.get("critical_limit", 0.6)
         '''The percent of population which the Health System can afford'''
