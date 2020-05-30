@@ -224,7 +224,7 @@ class Simulation(object):
                     agent.infected_status = InfectionSeverity.Severe
                     self.get_statistics()
                     if self.statistics['Severe'] + self.statistics['Hospitalization'] >= self.critical_limit:
-                        if agent.infected_time <= incubation_time:
+                        if agent.infected_time <= agent.incubation_time:
                             agent.infected_status = InfectionSeverity.Exposed
                         agent.status = Status.Death
                         agent.infected_status = InfectionSeverity.Asymptomatic
