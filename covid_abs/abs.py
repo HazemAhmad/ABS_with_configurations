@@ -159,7 +159,7 @@ class Simulation(object):
 
         if agent1.status == Status.Susceptible and agent2.status == Status.Infected:
             contagion_test = np.random.random()
-            agent1.Status = status.Exposed
+            agent1.Status = Status.Exposed
             if contagion_test <= self.contagion_rate:
                 agent1.status = Status.Infected
                 agent1.infection_status = InfectionSeverity.Asymptomatic
