@@ -44,8 +44,8 @@ def color2(agent):
     """Plotting colors by Status and InfectionSeverity"""
     if agent.status == Status.Susceptible:
         return 'blue'
-    elif agent.status == Status.Exposed:
-        return 'violet'
+    #elif agent.status == Status.Exposed:
+      #  return 'violet'
     elif agent.status == Status.Infected:
         if agent_infected_status == InfectionSeverity.Exposed:
             return 'violet'
