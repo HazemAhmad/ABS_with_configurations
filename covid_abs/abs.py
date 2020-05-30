@@ -209,13 +209,10 @@ class Simulation(object):
         if agent.status == Status.Death:
             return
                                                  # my line
-        if agent.status == Status.Infected:
+        if agent.status == Status.Infected or agent.status == Status.Exposed :
             agent.infected_time += 1
-        if agent.status == Status.Exposed :
-            agent.infected_time += 1
-            while agent.infected_time < 20:
-                if agent.infected_time > agent.incubation_time:
-                    agent.status = Status.Infected
+            if agent.infected_time >= agent.incubation_time and agent.infected_time < 20 :
+                agent.status = Status.Infected
             indice = agent.age // 10 - 1 if agent.age > 10 else 0
 
             teste_sub = np.random.random()
@@ -230,13 +227,14 @@ class Simulation(object):
                     if self.statistics['Severe'] + self.statistics['Hospitalization'] >= self.critical_limit:
                         agent.status = Status.Death
                         agent.infected_status = InfectionSeverity.Asymptomatic
+        
 
             death_test = np.random.random()
             if age_death_probs[indice] > death_test:
                 agent.status = Status.Death
                 agent.infected_status = InfectionSeverity.Asymptomatic
                 return
-            if agent.infected_time > agent.incubation_time and agent.infected_time < 20:
+            if agent.infected_time > agent.incubation_time:
                 agent.status = Status.Infected
                 #agent.infected_status = InfectionSeverity.Symptomatic  # my line 
 
