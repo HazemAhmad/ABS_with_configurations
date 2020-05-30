@@ -209,10 +209,13 @@ class Simulation(object):
         if agent.status == Status.Death:
             return
                                                  # my line
-        if agent.status == Status.Infected or agent.status == Status.Exposed :
+        if agent.status == Status.Infected:
             agent.infected_time += 1
-            if agent.infected_time >= agent.incubation_time and agent.infected_time < 20 :
-                agent.status = Status.Infected
+        if agent.status == Status.Exposed :
+            agent.infected_time += 1
+            while agent.infected_time < 20:
+                if agent.infected_time > agent.incubation_time:
+                    agent.status = Status.Infected
             indice = agent.age // 10 - 1 if agent.age > 10 else 0
 
             teste_sub = np.random.random()

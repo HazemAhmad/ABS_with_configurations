@@ -51,8 +51,8 @@ class Agent(object):
         """The vertical position of the agent in the shared environment"""
         self.status = kwargs.get('status', Status.Susceptible)
         """The health status of the agent"""
-        self.status = kwargs.get('status', Status.Exposed)
-        """The health status of the agent"""
+        #self.status = kwargs.get('status', Status.Exposed)
+       # """The health status of the agent"""
         self.infected_status = InfectionSeverity.Asymptomatic
         """The infection severity of the agent"""
         self.infected_time = kwargs.get('infected_time', 0)
