@@ -24,6 +24,8 @@ class Simulation(object):
         '''The initial percent of population which starts the simulation with the status Infected'''
         self.initial_immune_perc = kwargs.get("initial_immune_perc", 0.05)
         '''The initial percent of population which starts the simulation with the status Immune'''
+        self.initial_exposed_perc = kwargs.get("initial_exposed_perc", 0.025)
+        '''The initial percent of population which starts the simulation with the status Exposed''' #my line
         self.contagion_distance = kwargs.get("contagion_distance", 1.)
         '''The minimal distance considered as contact (or exposition)'''
         self.contagion_rate = kwargs.get("contagion_rate", 0.9)
