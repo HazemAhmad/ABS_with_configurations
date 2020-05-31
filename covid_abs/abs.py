@@ -214,15 +214,14 @@ class Simulation(object):
             agent.infected_status = InfectionSeverity.Exposed
             if agent.infected_time > 5:#incubation_time :
                 agent.status = Status.Infected
-                if agent.health == 'h':
-                        agent.infection_status = InfectionSeverity.Asymptomatic
-                else:
-                    if agent.health_status == 'r':
-                        agent.infected_status = InfectionSeverity.Severe
-                        agent.infection_status = InfectionSeverity.Severe
+                
         if agent.status == Status.Death:
             return
         if agent.status == Status.Infected :
+            if agent.health == 'h':
+                        agent.infection_status = InfectionSeverity.Asymptomatic
+                elif agent.health_status == 'r':
+                    agent.infected_status = InfectionSeverity.Severe
             agent.infected_time += 1
             
             indice = agent.age // 10 - 1 if agent.age > 10 else 0
