@@ -38,6 +38,9 @@ class AgentType(Enum):
     Government = 'g'
     Healthcare = 'c'
 
+class HealthType(Enum):     
+    Health = 'h'
+    Respiratory = 'r'
 
 class Agent(object):
     """
@@ -68,6 +71,8 @@ class Agent(object):
         self.type = AgentType.Person
         """The type of the agent"""
         self.environment = kwargs.get('environment', None)
+        """The health status of the agent"""
+        self.health = kwargs.get('health', HealthType.Health)
 
     def get_description(self):
         """
