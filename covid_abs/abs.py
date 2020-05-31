@@ -212,15 +212,18 @@ class Simulation(object):
             agent.infected_status = InfectionSeverity.Exposed
             if agent.infected_time > 5:#incubation_time :
                 agent.status = Status.Infected
-                if agent.health == 'r' and agent.status == Status.Infected:
-                    agent.infection_status = InfectionSeverity.Asymptomatic
-                else: agent.infection_status = InfectionSeverity.Severe
+                #if agent.health == 'r' and agent.status == Status.Infected:
+                 #   agent.infection_status = InfectionSeverity.Severe
+                #else: agent.infection_status = InfectionSeverity.Asymptomatic
                 
                 
         if agent.status == Status.Death:
             return
         if agent.status == Status.Infected :                
             agent.infected_time += 1
+            if agent.health == 'r' and agent.status == Status.Infected:
+                    agent.infection_status = InfectionSeverity.Severe
+            else: agent.infection_status = InfectionSeverity.Asymptomatic
             indice = agent.age // 10 - 1 if agent.age > 10 else 0
 
             teste_sub = np.random.random()
