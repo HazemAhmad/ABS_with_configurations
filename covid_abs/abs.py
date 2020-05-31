@@ -331,7 +331,7 @@ class Simulation(object):
                 self.statistics[status.name] = np.sum(
                     [1 for a in self.population if a.status == status]) / self.population_size
 
-            for infected_status in filter(lambda x: x != InfectionSeverity.Severe, InfectionSeverity):
+            for infected_status in filter(lambda x: x != InfectionSeverity.Asymptomatic, InfectionSeverity):
                 self.statistics[infected_status.name] = np.sum([1 for a in self.population if
                                                                 a.infected_status == infected_status and
                                                                 a.status != Status.Death]) / self.population_size
