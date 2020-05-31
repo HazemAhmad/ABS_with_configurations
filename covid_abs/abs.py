@@ -2,7 +2,7 @@
 Main code for Agent Based Simulation
 """
 
-from covid_abs.agents import Status, InfectionSeverity, Agent, HealthType
+from covid_abs.agents import Status, InfectionSeverity, Agent
 from covid_abs.common import *
 
 
@@ -52,8 +52,7 @@ class Simulation(object):
         "A dictionary with conditional changes in the Simulation attributes"
         self.triggers_population = kwargs.get("triggers_population", [])
         "A dictionary with conditional changes in the Agent attributes"
-        self.health_status = kwargs.get("health_status", 'h')
-        '''Health status of agents'''
+
         self.total_wealth = kwargs.get("total_wealth", 10 ** 4)
 
     def _xclip(self, x):
@@ -116,7 +115,7 @@ class Simulation(object):
         :return: the newly created agent
         """
         x, y = self.random_position()
-        s = ['h','r'] 
+
         age = int(np.random.beta(2, 5, 1) * 100)
         social_stratum = int(np.random.rand(1) * 100 // 20)
         self.population.append(Agent(x=x, y=y, age=age, status=status, social_stratum=social_stratum))
@@ -212,18 +211,12 @@ class Simulation(object):
             agent.infected_status = InfectionSeverity.Exposed
             if agent.infected_time > 5:#incubation_time :
                 agent.status = Status.Infected
-                #if agent.health == 'r' and agent.status == Status.Infected:
-                 #   agent.infection_status = InfectionSeverity.Severe
-            else: agent.infection_status = InfectionSeverity.Asymptomatic
-                
                 
         if agent.status == Status.Death:
             return
-        if agent.status == Status.Infected :                
+        if agent.status == Status.Infected :
             agent.infected_time += 1
-            if agent.health == 'r' and agent.status == Status.Infected:
-                    agent.infection_status = InfectionSeverity.Severe
-            else: agent.infection_status = InfectionSeverity.Asymptomatic
+            
             indice = agent.age // 10 - 1 if agent.age > 10 else 0
 
             teste_sub = np.random.random()
