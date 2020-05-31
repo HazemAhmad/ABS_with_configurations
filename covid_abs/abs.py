@@ -28,6 +28,8 @@ class Simulation(object):
         '''The initial percent of population which starts the simulation with the status Exposed'''
         self.contagion_distance = kwargs.get("contagion_distance", 1.)
         '''The minimal distance considered as contact (or exposition)'''
+        self.R_0 = kwargs.get("R_0", 1.)
+        '''The basic reproduction number''' #my_line
         self.contagion_rate = kwargs.get("contagion_rate", 0.9)
         '''The probability of contagion given two agents were in contact'''
         self.initial_infected_time = kwargs.get('infected_time', 0)
@@ -211,12 +213,13 @@ class Simulation(object):
             agent.infected_status = InfectionSeverity.Exposed
             if agent.infected_time > 5:#incubation_time :
                 agent.status = Status.Infected
+                               
                 
         if agent.status == Status.Death:
             return
         if agent.status == Status.Infected :
             agent.infected_time += 1
-            
+            R_0= (R_0+1)*agent.infected_time           #reproduction number
             indice = agent.age // 10 - 1 if agent.age > 10 else 0
 
             teste_sub = np.random.random()
