@@ -51,8 +51,9 @@ def color2(agent):
             return 'darkgray'
         elif agent.infected_status == InfectionSeverity.Hospitalization:
             return 'orange'
+        elif agent.infected_status == InfectionSeverity.Severe
         else:
-            return 'red'
+            return 'white'
     elif agent.status == Status.Recovered_Immune:
         return 'green'
     elif agent.status == Status.Death:
