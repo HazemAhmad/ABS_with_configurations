@@ -214,7 +214,7 @@ class Simulation(object):
                 agent.status = Status.Infected
                 #if agent.health == 'r' and agent.status == Status.Infected:
                  #   agent.infection_status = InfectionSeverity.Severe
-                #else: agent.infection_status = InfectionSeverity.Asymptomatic
+                else: agent.infection_status = InfectionSeverity.Asymptomatic
                 
                 
         if agent.status == Status.Death:
@@ -331,7 +331,7 @@ class Simulation(object):
                 self.statistics[status.name] = np.sum(
                     [1 for a in self.population if a.status == status]) / self.population_size
 
-            for infected_status in filter(lambda x: x != InfectionSeverity.Symptomatic, InfectionSeverity):
+            for infected_status in filter(lambda x: x != InfectionSeverity.Exposed, InfectionSeverity):
                 self.statistics[infected_status.name] = np.sum([1 for a in self.population if
                                                                 a.infected_status == infected_status and
                                                                 a.status != Status.Death]) / self.population_size
