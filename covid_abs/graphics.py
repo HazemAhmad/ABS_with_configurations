@@ -182,10 +182,6 @@ def execute_simulation(sim, **kwargs):
     linhas1 = {}
 
     ax[1].axhline(y=sim.critical_limit, c="black", ls='--', label='Critical limit')
-    
-    # R_0 plotting
-    ax[1].axhline(y=sim.R_0, c="Purple", ls='--', label='R_0')
-
 
     for col in df1.columns.values:
         if col != 'Asymptomatic':

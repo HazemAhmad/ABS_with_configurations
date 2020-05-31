@@ -61,8 +61,6 @@ class Agent(object):
         """The time (in days) after the infection without being infectious""" #my line 
         self.age = kwargs.get('age', 0)
         """The age (in years) of the agent"""
-        self.R_0 = kwargs.get('R_0', 0)
-        """Basic reproduction number"""
         self.social_stratum = kwargs.get('social_stratum', 0)
         """The social stratum (or their quintile in wealth distribution) of the agent"""
         self.wealth = kwargs.get('wealth', 0.0)
