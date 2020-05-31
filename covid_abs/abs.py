@@ -219,8 +219,8 @@ class Simulation(object):
             return
         if agent.status == Status.Infected :
             if agent.health == 'h':
-                        agent.infection_status = InfectionSeverity.Asymptomatic
-                elif agent.health_status == 'r':
+                agent.infection_status = InfectionSeverity.Asymptomatic
+            elif agent.health_status == 'r':
                     agent.infected_status = InfectionSeverity.Severe
             agent.infected_time += 1
             
