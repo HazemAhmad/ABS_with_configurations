@@ -21,7 +21,7 @@ class InfectionSeverity(Enum):
     """
     The Severity of the Infected agents
     """
-   # Symptomatic = 's'
+    Symptomatic = 's'
     Exposed = 'e'
     Asymptomatic = 'a'
     Hospitalization = 'h'
