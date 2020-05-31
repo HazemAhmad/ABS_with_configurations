@@ -172,7 +172,7 @@ class Simulation(object):
         :param triggers: the list of population triggers related to the movement
         """
 
-        if agent.status == Status.Death or (agent.status == Status.Exposed or agent.status == Status.Infected
+        if agent.status == Status.Death or (agent.status == agent.status == Status.Infected
                                             and (agent.infected_status == InfectionSeverity.Hospitalization
                                                  or agent.infected_status == InfectionSeverity.Severe)):
             return
@@ -209,7 +209,7 @@ class Simulation(object):
         if agent.status == Status.Exposed: 
             agent.infected_time += 1
             agent.infected_status = InfectionSeverity.Exposed
-            if agent.infected_time > 4 :
+            if agent.infected_time > 5:#incubation_time :
                 agent.status = Status.Infected
                 
         if agent.status == Status.Death:
