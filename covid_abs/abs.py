@@ -209,7 +209,7 @@ class Simulation(object):
         if agent.status == Status.Exposed: 
             agent.infected_time += 1
             agent.infected_status = InfectionSeverity.Exposed
-            if agent.infected_time > agent.incubation_time :
+            if agent.infected_time > 6 :
                 agent.status = Status.Infected
                 
         if agent.status == Status.Death:
