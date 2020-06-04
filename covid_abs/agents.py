@@ -38,9 +38,6 @@ class AgentType(Enum):
     Government = 'g'
     Healthcare = 'c'
 
-class HealthType(Enum):     
-    Health = 'h'
-    Respiratory = 'r'
 
 class Agent(object):
     """
@@ -69,8 +66,6 @@ class Agent(object):
         self.wealth = kwargs.get('wealth', 0.0)
         """The current wealth of the agent"""
         self.type = AgentType.Person
-        """Healthtype of agent"""
-        self.health = kwargs.get('health', HealthType.Health)
         """The type of the agent"""
         self.environment = kwargs.get('environment', None)
 

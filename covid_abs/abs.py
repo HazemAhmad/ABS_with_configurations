@@ -2,7 +2,7 @@
 Main code for Agent Based Simulation
 """
 
-from covid_abs.agents import Status, InfectionSeverity, Agent, HealthType
+from covid_abs.agents import Status, InfectionSeverity, Agent
 from covid_abs.common import *
 
 
@@ -34,8 +34,6 @@ class Simulation(object):
         """The time (in days) after the infection""" #my line
         self.initial_incubation_time = kwargs.get('incubation_time', 1)
         """The time (in days) after the infection without being infectious""" #my line 
-        self.health_status = kwargs.get("health_status", 'h')
-        """the Healthtype of the agent"""
         self.critical_limit = kwargs.get("critical_limit", 0.6)
         '''The percent of population which the Health System can afford'''
         self.amplitudes = kwargs.get('amplitudes',
@@ -117,7 +115,6 @@ class Simulation(object):
         :return: the newly created agent
         """
         x, y = self.random_position()
-        s = ['h','r']
 
         age = int(np.random.beta(2, 5, 1) * 100)
         social_stratum = int(np.random.rand(1) * 100 // 20)
@@ -218,10 +215,6 @@ class Simulation(object):
         if agent.status == Status.Death:
             return
         if agent.status == Status.Infected :
-            if agent.health == 'h':
-                agent.infection_status = InfectionSeverity.Asymptomatic
-            elif agent.health == 'r':
-                    agent.infected_status = InfectionSeverity.Severe
             agent.infected_time += 1
             
             indice = agent.age // 10 - 1 if agent.age > 10 else 0
